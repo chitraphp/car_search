@@ -1,8 +1,18 @@
 <?php
+
+//$price1 = $_GET['price'];
+//echo $price1;
+
 class Car{
     public $make_model;
     public $price;
     public $miles;
+
+    function worthBuying($max_price)
+    {
+        return $this->price < ($max_price);
+    }
+
 }
 
 $porsche = new Car();
@@ -28,8 +38,9 @@ $mercedes->miles = 38000;
 $cars = array($porsche, $ford, $lexus, $mercedes);
 
 $cars_matching_search = array();
+
 foreach ($cars as $car) {
-    if ($car->price < $_GET["price"]) {
+    if ($car->worthBuying($_GET['price'])) {
         array_push($cars_matching_search, $car);
     }
 }
@@ -44,13 +55,17 @@ foreach ($cars as $car) {
         <h1>Your Car Dealership</h1>
         <ul>
             <?php
-                foreach ($cars_matching_search as $car) {
-                    echo "<li> $car->make_model </li>";
-                    echo "<ul>";
-                        echo "<li> $car->price </li>";
-                        echo "<li> Miles: $car->miles </li>";
-                    echo "</ul>";
-                }
+
+                echo "hello";
+                // foreach ($cars_matching_search as $car) {
+                //     echo "<li> $car->make_model </li>";
+                //     echo "<ul>";
+                //         echo "<li> $car->price </li>";
+                //         echo "<li> Miles: $car->miles </li>";
+                //         echo "<li> 'hello!' </li>";
+                //     echo "</ul>";
+                //
+                // }
             ?>
         </ul>
     </body>
